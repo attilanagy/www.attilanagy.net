@@ -1,0 +1,17 @@
+{
+  "name": "www.attilanagy.net",
+  "version": "1.0.0",
+  "description": "Personal web-page of Attila Nagy",
+  "author": "Attila Nagy <attila@attilanagy.net>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2"
+  }
+}

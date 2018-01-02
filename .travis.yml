@@ -1,0 +1,24 @@
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+  - 8
+install:
+- npm install
+cache:
+  directories:
+  - node_modules
+script:
+- gulp clean
+- gulp dist
+deploy:
+  skip_cleanup: true
+  provider: gcs
+  access_key_id: GOOGWAH6CX4RUHLOGDKT
+  secret_access_key:
+    secure: aXqJxOLkx1+T5R5LWxvn7tnHeIvNpiBPMxhsk8vZ+nEF5Z/x/cbkpZ1hDkbAnS7WAA2Ro6FzXcqrYjiv78y02awSiJwhV1E+TQ/oYkTnHl09A9cKHcl9bJ3qtlfu1mHbq4jd4sGlq0jOTxilstxSbdkRs5I3YeeDF9lBJwzCs6OWPkKy3mi4/O3Qk+6t7wGYXB3VO+NdWaXpedjB5c7br2XmTasnp5D9/85hvNshhgZ3rvJpUdojIX1BUsKXnTsOdvzvOEanOlAf6oISjPDxxIMygbp+ZVQnErLC8k/TTHhjxiNHa/EHuVxSDGDZOfzmGRwluoLN8nTHTqgvUYC0lXnt+Z+r8doba6jfP/hYkNn5s12qOeMeu7CG531RQLP860Izw7nclYvB3FC6B11Jqe/+hfD/XVQk1gbWossh3/F02c+LUv4MX/Fp5SxkcINmUC76fNGsXPJo+SvCF42Fedx4qYsNMAIDBVVivghTilc70n6tHOVmsAY324/XtI25qYIV6lYkoVpaT3jvPyf4TptFi0PYPpDN0vgrX13SESTa8hE8/PouvmvoIX/4A9MgWokqV1AKxktF1GlfZ4jkxGLUTmKaaXnKCu08yhpVySjPyta69nBiZcfzTKyuxqCZvdncOmbo97GCCv9viplMEwX5YxbKyzzJfmZCHCXOcQI=
+  bucket: www.attilanagy.net
+  local-dir: build
+  on:
+    repo: attilanagy/www.attilanagy.net
+    branch: master
