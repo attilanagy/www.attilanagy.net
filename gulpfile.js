@@ -7,7 +7,8 @@ var browserSynch = require("browser-sync").create(),
     sass = require("gulp-sass");
 
 var cssGenerator = gulp.src("src/sass/attilanagy.scss")
-                   .pipe(sass().on("error", sass.logError));
+                   .pipe(sass().on("error", sass.logError)),
+    cssDestination = gulp.dest("build/css");
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
@@ -21,13 +22,13 @@ gulp.task("html", () => {
 
 gulp.task("sass", () => {
   return cssGenerator
-         .pipe(gulp.dest("build/css"));
+         .pipe(cssDestination);
 });
 
 gulp.task("dist", [ "html" ], () => {
   return cssGenerator
          .pipe(cleanCSS())
-         .pipe(gulp.dest("build/css"));
+         .pipe(cssDestination);
 });
 
 gulp.task("serve", [ "sass", "html" ], () => {
