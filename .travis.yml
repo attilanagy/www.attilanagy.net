@@ -22,3 +22,6 @@ deploy:
   on:
     repo: attilanagy/www.attilanagy.net
     branch: master
+branches:
+  only:
+    - master
