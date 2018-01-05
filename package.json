@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Personal web-page of Attila Nagy",
   "author": "Attila Nagy <attila@attilanagy.net>",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devDependencies": {
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
