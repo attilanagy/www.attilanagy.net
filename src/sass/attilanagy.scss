@@ -8,22 +8,11 @@
 
 $backgroundColor: #660033;
 
-
-
 body {
     background-color: $backgroundColor;
 }
 
-html, body, .container, .row {
-    height: 100%;
-}
-
-ul {
-    width: 100%;
-}
-
 svg {
-    width: 150px;
     fill: $white;
 }
 
