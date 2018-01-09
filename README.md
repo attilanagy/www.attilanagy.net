@@ -6,14 +6,14 @@ media profiles.
 ![Travis Build Status](https://travis-ci.org/attilanagy/www.attilanagy.net.svg?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/attilanagy/www.attilanagy.net/badge.svg)](https://snyk.io/test/github/attilanagy/www.attilanagy.net)
 
-## Technologies used
+## Technologies
 
-* [Bootstrap][bootstrap] -Managing HTML Layout
+* [Bootstrap][bootstrap] - Managing HTML/CSS Layout
 * [Gulp][gulp] - Managing Tasks
-* [Synk][synk] - Verifying Dependencies
+* [Snyk][snyk] - Verifying Dependencies
 * [Travis][travis] - CI and Deployment Automation
 
-## How To...
+## HowTo
 
 Install Dependencies
 
@@ -49,4 +49,4 @@ deployment automatically.
 [gulp]:         https://gulpjs.com/
 [travis]:       https://travis-ci.org/
 [gcs]:          https://cloud.google.com/storage/
-[synk]:         https://snyk.io/
+[snyk]:         https://snyk.io/
