@@ -10,6 +10,7 @@ media profiles.
 
 * [Bootstrap][bootstrap] - Managing HTML/CSS Layout
 * [Gulp][gulp] - Managing Tasks
+* [Simple Icons][simpleicons] - Free SVG Icons
 * [Snyk][snyk] - Verifying Dependencies
 * [Travis][travis] - CI and Deployment Automation
 
@@ -50,3 +51,4 @@ deployment automatically.
 [travis]:       https://travis-ci.org/
 [gcs]:          https://cloud.google.com/storage/
 [snyk]:         https://snyk.io/
+[simpleicons]:  https://simpleicons.org/
