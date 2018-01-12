@@ -21,6 +21,7 @@ gulp.task("html", () => {
   return gulp.src("src/index.html")
          .pipe(inject.replace("<!-- linkedin-icon -->", icons["LinkedIn"]["svg"]))
          .pipe(inject.replace("<!-- twitter-icon -->", icons["Twitter"]["svg"]))
+         .pipe(inject.replace("<!-- github-icon -->", icons["GitHub"]["svg"]))
          .pipe(inject.replace("<!-- rss-icon -->", icons["RSS"]["svg"]))
          .pipe(gulp.dest("build/"));
 });
