@@ -6,16 +6,12 @@ var browserSynch = require("browser-sync").create(),
     gulp = require("gulp"),
     icons = require("simple-icons"),
     inject = require("gulp-inject-string"),
+    noop = require("through2").obj(),
     sass = require("gulp-sass");
-
-var cssGenerator = gulp.src("src/sass/attilanagy.scss")
-                   .pipe(sass().on("error", sass.logError)),
-    cssDestination = gulp.dest("build/css");
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
 });
-
 
 gulp.task("html", () => {
   return gulp.src("src/index.html")
@@ -27,15 +23,13 @@ gulp.task("html", () => {
 });
 
 gulp.task("sass", () => {
-  return cssGenerator
-         .pipe(cssDestination);
+  return gulp.src("src/sass/attilanagy.scss")
+         .pipe(sass().on("error", sass.logError))
+         .pipe(process.env.CI ? cleanCSS() : noop)
+         .pipe(gulp.dest("build/css"));
 });
 
-gulp.task("dist", [ "html" ], () => {
-  return cssGenerator
-         .pipe(cleanCSS())
-         .pipe(cssDestination);
-});
+gulp.task("dist", [ "html", "sass" ]);
 
 gulp.task("serve", [ "sass", "html" ], () => {
   browserSynch.init( { "server": "./build/" });
