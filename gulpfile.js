@@ -7,6 +7,7 @@ var browserSynch = require("browser-sync").create(),
     icons = require("simple-icons"),
     inject = require("gulp-inject-string"),
     noop = require("through2").obj(),
+    nunjucks = require("gulp-nunjucks"),
     sass = require("gulp-sass");
 
 gulp.task("clean", () => {
@@ -14,7 +15,8 @@ gulp.task("clean", () => {
 });
 
 gulp.task("html", () => {
-  return gulp.src("src/index.html")
+  return gulp.src("src/templates/*.html")
+         .pipe(nunjucks.compile())
          .pipe(inject.replace("<!-- linkedin-icon -->", icons["LinkedIn"]["svg"]))
          .pipe(inject.replace("<!-- twitter-icon -->", icons["Twitter"]["svg"]))
          .pipe(inject.replace("<!-- github-icon -->", icons["GitHub"]["svg"]))
@@ -34,5 +36,5 @@ gulp.task("dist", [ "html", "sass" ]);
 gulp.task("serve", [ "sass", "html" ], () => {
   browserSynch.init( { "server": "./build/" });
   gulp.watch("./src/sass/*.scss", [ "sass" ]);
-  gulp.watch("./src/*.html", [ "html" ]);
+  gulp.watch("./src/templates/**/*.html", [ "html" ]);
 });
