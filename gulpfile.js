@@ -16,11 +16,7 @@ gulp.task("clean", () => {
 
 gulp.task("html", () => {
   return gulp.src("src/templates/*.html")
-         .pipe(nunjucks.compile())
-         .pipe(inject.replace("<!-- linkedin-icon -->", icons["LinkedIn"]["svg"]))
-         .pipe(inject.replace("<!-- twitter-icon -->", icons["Twitter"]["svg"]))
-         .pipe(inject.replace("<!-- github-icon -->", icons["GitHub"]["svg"]))
-         .pipe(inject.replace("<!-- rss-icon -->", icons["RSS"]["svg"]))
+         .pipe(nunjucks.compile({ icons: icons }, { autoescape: false }))
          .pipe(gulp.dest("build/"));
 });
 
