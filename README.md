@@ -28,7 +28,7 @@ Generate HTML
 
 `gulp html`
 
-Generate CSS (and HTML ad dependency)
+Generate CSS (and HTML as dependency)
 
 `gulp sass`
 
