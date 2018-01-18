@@ -1,6 +1,7 @@
 'use strict';
 
 var browserSynch = require("browser-sync").create(),
+    ciEnv = process.env.CI ? true : false,
     cleanCSS = require("gulp-clean-css"),
     del = require("del"),
     gulp = require("gulp"),
@@ -9,7 +10,9 @@ var browserSynch = require("browser-sync").create(),
     inject = require("gulp-inject-string"),
     noop = require("through2").obj(),
     nunjucks = require("gulp-nunjucks"),
-    sass = require("gulp-sass");
+    postcss = require("gulp-postcss"),
+    sass = require("gulp-sass"),
+    uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]});
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
@@ -27,16 +30,17 @@ gulp.task("htmlvalidator", () => {
          .pipe(htmlvalidator.reporter());
 });
 
-gulp.task("sass", () => {
+gulp.task("sass", [ "html" ], () => {
   return gulp.src("src/sass/attilanagy.scss")
          .pipe(sass().on("error", sass.logError))
-         .pipe(process.env.CI ? cleanCSS() : noop)
+         .pipe(ciEnv ? postcss([ uncssPlugin]) : noop)
+         .pipe(ciEnv ? cleanCSS() : noop)
          .pipe(gulp.dest("build/css"));
 });
 
-gulp.task("dist", [ "html", "sass" ]);
+gulp.task("dist", [ "sass" ]);
 
-gulp.task("serve", [ "sass", "html" ], () => {
+gulp.task("serve", [ "sass" ], () => {
   browserSynch.init( { "server": "./build/" });
   gulp.watch("./src/sass/*.scss", [ "sass" ]);
   gulp.watch("./src/templates/**/*.html", [ "html" ]);
