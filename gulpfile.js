@@ -5,6 +5,8 @@ var browserSynch = require("browser-sync").create(),
     cleanCSS = require("gulp-clean-css"),
     del = require("del"),
     gulp = require("gulp"),
+    htmlmin = require("gulp-htmlmin"),
+    htmlminConfig = { collapseWhitespace: true, removeComments: true },
     htmlvalidator = require("gulp-w3cjs"),
     icons = require("simple-icons"),
     inject = require("gulp-inject-string"),
@@ -21,6 +23,7 @@ gulp.task("clean", () => {
 gulp.task("html", () => {
   return gulp.src("src/templates/*.html")
          .pipe(nunjucks.compile({ icons: icons }, { autoescape: false }))
+         .pipe(ciEnv ? htmlmin(htmlminConfig) : noop)
          .pipe(gulp.dest("build/"));
 });
 
