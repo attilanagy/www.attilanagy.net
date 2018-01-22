@@ -42,13 +42,13 @@ Generate Everything For Production Deployment
 
 ## Deployment
 
-The web-site is hosted on [Google Cloud Storage][gcs]. Every single push to
+The web-site is hosted on [Firebase][firebase]. Every single push to
 the *master* branch triggers a [Travis][travis] build what will do the
 deployment automatically.
 
 [bootstrap]:    https://getbootstrap.com/
 [gulp]:         https://gulpjs.com/
 [travis]:       https://travis-ci.org/
-[gcs]:          https://cloud.google.com/storage/
+[firebase]:     https://firebase.google.com/
 [snyk]:         https://snyk.io/
 [simpleicons]:  https://simpleicons.org/
