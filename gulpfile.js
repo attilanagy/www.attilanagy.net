@@ -10,7 +10,7 @@ var browserSynch = require("browser-sync").create(),
     htmlvalidator = require("gulp-w3cjs"),
     icons = require("simple-icons"),
     inject = require("gulp-inject-string"),
-    noop = require("through2").obj(),
+    noop = require("through2").obj,
     nunjucks = require("gulp-nunjucks"),
     postcss = require("gulp-postcss"),
     sass = require("gulp-sass"),
@@ -23,7 +23,7 @@ gulp.task("clean", () => {
 gulp.task("html", () => {
   return gulp.src("src/templates/*.html")
          .pipe(nunjucks.compile({ icons: icons }, { autoescape: false }))
-         .pipe(ciEnv ? htmlmin(htmlminConfig) : noop)
+         .pipe(ciEnv ? htmlmin(htmlminConfig) : noop())
          .pipe(gulp.dest("build/"));
 });
 
@@ -36,8 +36,8 @@ gulp.task("htmlvalidator", () => {
 gulp.task("sass", [ "html" ], () => {
   return gulp.src("src/sass/attilanagy.scss")
          .pipe(sass().on("error", sass.logError))
-         .pipe(ciEnv ? postcss([ uncssPlugin]) : noop)
-         .pipe(ciEnv ? cleanCSS() : noop)
+         .pipe(ciEnv ? postcss([ uncssPlugin]) : noop())
+         .pipe(ciEnv ? cleanCSS() : noop())
          .pipe(gulp.dest("build/css"));
 });
 
