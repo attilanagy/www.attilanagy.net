@@ -3,6 +3,7 @@
 var browserSynch = require("browser-sync").create(),
     ciEnv = process.env.CI ? true : false,
     cleanCSS = require("gulp-clean-css"),
+    cssValidator = require("gulp-w3c-css"),
     del = require("del"),
     gulp = require("gulp"),
     htmlmin = require("gulp-htmlmin"),
@@ -39,6 +40,11 @@ gulp.task("sass", [ "html" ], () => {
          .pipe(ciEnv ? postcss([ uncssPlugin]) : noop())
          .pipe(ciEnv ? cleanCSS() : noop())
          .pipe(gulp.dest("build/css"));
+});
+
+gulp.task("cssValidator", () => {
+  return gulp.src("build/css/*.css")
+         .pipe(cssValidator());
 });
 
 gulp.task("dist", [ "sass" ]);
