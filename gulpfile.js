@@ -9,16 +9,25 @@ var browserSynch = require("browser-sync").create(),
     htmlmin = require("gulp-htmlmin"),
     htmlminConfig = { collapseWhitespace: true, removeComments: true },
     htmlvalidator = require("gulp-w3cjs"),
+    ico = require('gulp-to-ico'),
     icons = require("simple-icons"),
     inject = require("gulp-inject-string"),
     noop = require("through2").obj,
     nunjucks = require("gulp-nunjucks"),
     postcss = require("gulp-postcss"),
     sass = require("gulp-sass"),
+    svg2png = require("gulp-svg2png"),
     uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]});
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
+});
+
+gulp.task("favicon", () => {
+  return gulp.src("src/favicon/favicon.svg")
+         .pipe(svg2png())
+         .pipe(ico("favicon.ico"))
+         .pipe(gulp.dest("build/"));
 });
 
 gulp.task("html", () => {
@@ -47,10 +56,11 @@ gulp.task("cssValidator", () => {
          .pipe(cssValidator());
 });
 
-gulp.task("dist", [ "sass" ]);
+gulp.task("dist", [ "sass", "favicon" ]);
 
-gulp.task("serve", [ "sass" ], () => {
+gulp.task("serve", [ "sass", "favicon" ], () => {
   browserSynch.init( { "server": "./build/" });
+  gulp.watch("./src/favicon/favicon.svg", [ "favicon" ])
   gulp.watch("./src/sass/*.scss", [ "sass" ]);
   gulp.watch("./src/templates/**/*.html", [ "html" ]);
 });
