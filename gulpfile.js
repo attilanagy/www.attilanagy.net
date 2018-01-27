@@ -59,8 +59,8 @@ gulp.task("cssValidator", () => {
 gulp.task("dist", [ "sass", "favicon" ]);
 
 gulp.task("serve", [ "sass", "favicon" ], () => {
-  browserSynch.init( { "server": "./build/" });
-  gulp.watch("./src/favicon/favicon.svg", [ "favicon" ])
-  gulp.watch("./src/sass/*.scss", [ "sass" ]);
-  gulp.watch("./src/templates/**/*.html", [ "html" ]);
+  browserSynch.init( { "server": "build/" });
+  gulp.watch("src/favicon/favicon.svg", [ "favicon" ])
+  gulp.watch("src/sass/*.scss", [ "sass" ]);
+  gulp.watch("src/templates/**/*.html", [ "html" ]);
 });
