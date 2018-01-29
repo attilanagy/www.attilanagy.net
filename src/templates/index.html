@@ -1,23 +1,10 @@
 {% extends "base/base.html" %}
 {% block content %}
-          <div class="col-2 text-center">
-            <a href="https://www.linkedin.com/in/nattila" title="LinkedIn">
-              {{ icons["LinkedIn"]["svg"] }}
-            </a>
-          </div>
-          <div class="col-2 text-center">
-            <a href="https://www.twitter.com/attilanagy_net" title="Twitter">
-              {{ icons["Twitter"]["svg"] }}
-            </a>
-          </div>
-          <div class="col-2 text-center">
-            <a href="https://github.com/attilanagy" title="GitHub">
-              {{ icons["GitHub"]["svg"] }}
-            </a>
-          </div>
-          <div class="col-2 text-center">
-            <a href="https://attilanagy.github.io" title="Blog">
-              {{ icons["RSS"]["svg"] }}
-            </a>
-          </div>
+{% for profile, link in links %}
+        <div class="col-2 text-center">
+          <a href="{{ link.url }}" title="{{ link.title | default(profile) }}">
+            {{ icons[profile]["svg"] }}
+          </a>
+        </div>
+{% endfor %}
 {% endblock %}

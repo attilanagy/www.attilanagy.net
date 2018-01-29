@@ -2,6 +2,7 @@
 
 var browserSynch = require("browser-sync").create(),
     ciEnv = process.env.CI ? true : false,
+    config = require("./site-config.json"),
     cleanCSS = require("gulp-clean-css"),
     cssValidator = require("gulp-w3c-css"),
     del = require("del"),
@@ -16,7 +17,8 @@ var browserSynch = require("browser-sync").create(),
     postcss = require("gulp-postcss"),
     sass = require("gulp-sass"),
     svg2png = require("gulp-svg2png"),
-    uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]});
+    uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]}),
+    variables = { icons: icons, links: config.links };
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
@@ -31,7 +33,7 @@ gulp.task("favicon", () => {
 
 gulp.task("html", () => {
   return gulp.src("src/templates/*.html")
-         .pipe(nunjucks.compile({ icons: icons }, { autoescape: false }))
+         .pipe(nunjucks.compile(variables, { autoescape: false }))
          .pipe(ciEnv ? htmlmin(htmlminConfig) : noop())
          .pipe(gulp.dest("build/"));
 });
