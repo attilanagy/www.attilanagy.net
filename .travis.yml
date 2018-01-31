@@ -8,17 +8,25 @@ install:
 cache:
   directories:
   - node_modules
-script:
-- gulp clean
-- gulp dist
-deploy:
-  skip_cleanup: true
-  provider: firebase
-  token:
-    secure: "o48SLI4YbzegIUo9kyKyNiZlzbiQEKzYc4U8OMVHwl2tl6+qrbA/5li3kFlwiZzOOHPA7xOF+32L7C/LDUCKP0bN7SYJ5E1r9EzW7K8r1E3sBQXVCxMcJzyusQD90Rxv9DA9/IGKOvQgUA5kFowu6q2bJM3Ys1xtV6TDZlBDEpvoF8PDY4ovQoTTZK3dtbX0ymZZNa80SjSlt9fcDRiN/AcNcHS/9HunRLxiEBjnhZ1IMsPw2Z4mEGde0F4eeaK1SSvsLn94FsTUmFwcibU7LRRboC7SLJe6bogw03KwjDcMJAtTx511vj8e4go1juoMYO++sM8JGiN+MJSsMsbwL4Bv5krttsdQzCH2pJi1T5OLHZKBA+8L1YQJAjSbNg7JrKps8m7f+0IR1Qgbrhg+LQtXt5KJAHJtt3A8V9UijMn+kNHEBFzev58lC2qWRK4vAldHSCTu3z6z+l330GrKVHgMiK0eJCjfoTbKpzL1h9JsxyMNbz/BX9qUQff/ib12A6KfB6yoHk5iEiuwdTx/AUef5VNQK8PTIaliBu0ywtoMIGKVk5XP7MR808pEXXgfcr6dJ92a6BJs0dukIb+eD6fbfnBiN41vIS3gn+dpzIzzIT61is1ZRKLksVOeZJfA+LmQrL9zHoen9YSKQHPUPQxdCbVquZGEsY3IqX1Hlk8="
-  on:
-    repo: attilanagy/www.attilanagy.net
-    branch: master
+jobs:
+  include:
+  - stage: build
+    script:
+      - gulp clean
+      - gulp dist
+  - stage: test
+    script:
+    - gulp verify
+  - stage: deploy
+    script: skip
+    deploy:
+      skip_cleanup: true
+      provider: firebase
+      token:
+        secure: "o48SLI4YbzegIUo9kyKyNiZlzbiQEKzYc4U8OMVHwl2tl6+qrbA/5li3kFlwiZzOOHPA7xOF+32L7C/LDUCKP0bN7SYJ5E1r9EzW7K8r1E3sBQXVCxMcJzyusQD90Rxv9DA9/IGKOvQgUA5kFowu6q2bJM3Ys1xtV6TDZlBDEpvoF8PDY4ovQoTTZK3dtbX0ymZZNa80SjSlt9fcDRiN/AcNcHS/9HunRLxiEBjnhZ1IMsPw2Z4mEGde0F4eeaK1SSvsLn94FsTUmFwcibU7LRRboC7SLJe6bogw03KwjDcMJAtTx511vj8e4go1juoMYO++sM8JGiN+MJSsMsbwL4Bv5krttsdQzCH2pJi1T5OLHZKBA+8L1YQJAjSbNg7JrKps8m7f+0IR1Qgbrhg+LQtXt5KJAHJtt3A8V9UijMn+kNHEBFzev58lC2qWRK4vAldHSCTu3z6z+l330GrKVHgMiK0eJCjfoTbKpzL1h9JsxyMNbz/BX9qUQff/ib12A6KfB6yoHk5iEiuwdTx/AUef5VNQK8PTIaliBu0ywtoMIGKVk5XP7MR808pEXXgfcr6dJ92a6BJs0dukIb+eD6fbfnBiN41vIS3gn+dpzIzzIT61is1ZRKLksVOeZJfA+LmQrL9zHoen9YSKQHPUPQxdCbVquZGEsY3IqX1Hlk8="
+      on:
+        repo: attilanagy/www.attilanagy.net
+        branch: master
 branches:
   only:
   - master

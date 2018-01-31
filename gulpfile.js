@@ -38,7 +38,7 @@ gulp.task("html", () => {
          .pipe(gulp.dest("build/"));
 });
 
-gulp.task("htmlvalidator", () => {
+gulp.task("htmlValidator", () => {
   return gulp.src("build/*.html")
          .pipe(htmlvalidator())
          .pipe(htmlvalidator.reporter());
@@ -56,6 +56,8 @@ gulp.task("cssValidator", () => {
   return gulp.src("build/css/*.css")
          .pipe(cssValidator());
 });
+
+gulp.task("verify", [ "htmlValidator", "cssValidator" ]);
 
 gulp.task("dist", [ "sass", "favicon" ]);
 
