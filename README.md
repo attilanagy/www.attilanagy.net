@@ -24,6 +24,10 @@ Clean build
 
 `gulp clean`
 
+Generate Favicon
+
+`gulp favicon`
+
 Generate HTML
 
 `gulp html`
