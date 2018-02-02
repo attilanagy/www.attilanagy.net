@@ -6,7 +6,7 @@
 @import "node_modules/bootstrap/scss/utilities";
 @import "node_modules/bootstrap/scss/type";
 
-$backgroundColor: #660033;
+$backgroundColor: {{ backgroundColor }};
 
 body {
     background-color: $backgroundColor;

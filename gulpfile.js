@@ -18,7 +18,8 @@ var browserSynch = require("browser-sync").create(),
     sass = require("gulp-sass"),
     svg2png = require("gulp-svg2png"),
     uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]}),
-    variables = { icons: icons, links: config.links };
+    variables = { icons: icons, links: config.links },
+    variables4Background = { backgroundColor: config.backgroundColor };
 
 gulp.task("clean", () => {
   return del([ "build/" ]);
@@ -26,6 +27,7 @@ gulp.task("clean", () => {
 
 gulp.task("favicon", () => {
   return gulp.src("src/favicon/favicon.svg")
+         .pipe(nunjucks.compile(variables4Background))
          .pipe(svg2png())
          .pipe(ico("favicon.ico"))
          .pipe(gulp.dest("build/"));
@@ -46,6 +48,7 @@ gulp.task("htmlValidator", () => {
 
 gulp.task("sass", [ "html" ], () => {
   return gulp.src("src/sass/attilanagy.scss")
+         .pipe(nunjucks.compile(variables4Background))
          .pipe(sass().on("error", sass.logError))
          .pipe(ciEnv ? postcss([ uncssPlugin]) : noop())
          .pipe(ciEnv ? cleanCSS() : noop())
