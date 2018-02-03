@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% block content %}
 {% for profile, link in links %}
-        <div class="col-2 text-center">
+        <div class="col-2 col-sm-1 text-center">
           <a href="{{ link.url }}" title="{{ link.title | default(profile) }}">
             {{ icons[profile]["svg"] }}
           </a>
