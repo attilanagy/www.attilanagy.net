@@ -12,6 +12,7 @@ var browserSynch = require("browser-sync").create(),
     htmlvalidator = require("gulp-w3cjs"),
     ico = require('gulp-to-ico'),
     icons = require("simple-icons"),
+    mergeStrem = require("merge-stream"),
     noop = require("through2").obj,
     nunjucks = require("gulp-nunjucks"),
     postcss = require("gulp-postcss"),
@@ -26,9 +27,15 @@ gulp.task("clean", () => {
 });
 
 gulp.task("favicon", () => {
-  return gulp.src("src/favicon/favicon.svg")
-         .pipe(nunjucks.compile(variables4Background))
-         .pipe(svg2png())
+  var svgSource = gulp.src("src/favicon/favicon.svg")
+         .pipe(nunjucks.compile(variables4Background)),
+      streams = mergeStrem();
+
+  config.favicon.dimensions.forEach((d) => {
+    streams.add(svgSource.pipe(svg2png({ width: d, height: d })));
+  });
+
+  return streams
          .pipe(ico("favicon.ico"))
          .pipe(gulp.dest("build/"));
 });
