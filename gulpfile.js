@@ -3,7 +3,7 @@
 var browserSynch = require("browser-sync").create(),
     ciEnv = process.env.CI ? true : false,
     config = require("./site-config.json"),
-    cleanCSS = require("gulp-clean-css"),
+    cleanCSSPlugin = require("postcss-clean"),
     cssValidator = require("gulp-w3c-css"),
     del = require("del"),
     gulp = require("gulp"),
@@ -57,8 +57,7 @@ gulp.task("sass", [ "html" ], () => {
   return gulp.src("src/sass/attilanagy.scss")
          .pipe(nunjucks.compile(variables4Background))
          .pipe(sass().on("error", sass.logError))
-         .pipe(ciEnv ? postcss([ uncssPlugin]) : noop())
-         .pipe(ciEnv ? cleanCSS() : noop())
+         .pipe(ciEnv ? postcss([ uncssPlugin, cleanCSSPlugin ]) : noop())
          .pipe(gulp.dest("build/css"));
 });
 
