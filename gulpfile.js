@@ -19,7 +19,7 @@ var browserSynch = require("browser-sync").create(),
     sass = require("gulp-sass"),
     svg2png = require("gulp-svg2png"),
     uncssPlugin = require("postcss-uncss")({ html: [ "build/*.html" ]}),
-    variables = { icons: icons, links: config.links },
+    variables = { icons: icons, links: config.links, ciEnv: ciEnv },
     variables4Background = { backgroundColor: config.backgroundColor };
 
 gulp.task("clean", () => {
