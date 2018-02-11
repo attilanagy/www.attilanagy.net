@@ -8,7 +8,6 @@ var browserSynch = require("browser-sync").create(),
     del = require("del"),
     gulp = require("gulp"),
     htmlmin = require("gulp-htmlmin"),
-    htmlminConfig = { collapseWhitespace: true, removeComments: true },
     htmlvalidator = require("gulp-w3cjs"),
     ico = require('gulp-to-ico'),
     icons = require("simple-icons"),
@@ -43,7 +42,7 @@ gulp.task("favicon", () => {
 gulp.task("html", () => {
   return gulp.src("src/templates/*.html")
          .pipe(nunjucks.compile(variables, { autoescape: false }))
-         .pipe(ciEnv ? htmlmin(htmlminConfig) : noop())
+         .pipe(ciEnv ? htmlmin(config.htmlmin) : noop())
          .pipe(gulp.dest("build/"));
 });
 
