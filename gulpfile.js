@@ -5,6 +5,7 @@ var browserSynch = require("browser-sync").create(),
     config = require("./site-config.json"),
     cleanCSSPlugin = require("postcss-clean"),
     cssValidator = require("gulp-w3c-css"),
+    cucumber = require("gulp-cucumber"),
     del = require("del"),
     gulp = require("gulp"),
     htmlmin = require("gulp-htmlmin"),
@@ -63,6 +64,14 @@ gulp.task("sass", [ "html" ], () => {
 gulp.task("cssValidator", () => {
   return gulp.src("build/css/*.css")
          .pipe(cssValidator());
+});
+
+gulp.task("acceptanceTest", () => {
+  return gulp.src("src/features/*")
+         .pipe(cucumber({
+           "steps": "src/features/steps/steps.js",
+           "format": "summary"
+         }))
 });
 
 gulp.task("verify", [ "htmlValidator", "cssValidator" ]);

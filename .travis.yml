@@ -12,6 +12,7 @@ script:
 - gulp clean
 - gulp dist
 - gulp verify
+- gulp acceptanceTest
 deploy:
   skip_cleanup: true
   provider: firebase
