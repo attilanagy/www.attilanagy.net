@@ -12,7 +12,6 @@ script:
 - gulp clean
 - gulp dist
 - gulp verify
-- gulp acceptanceTest
 deploy:
   skip_cleanup: true
   provider: firebase
@@ -21,6 +20,8 @@ deploy:
   on:
     repo: attilanagy/www.attilanagy.net
     branch: master
+after_deploy:
+- gulp acceptanceTest
 branches:
   only:
   - master
