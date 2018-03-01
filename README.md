@@ -44,6 +44,10 @@ Generate Everything For Production Deployment
 
 `gulp dist`
 
+Run Acceptance Tests
+
+`gulp acceptanceTest`
+
 ## Deployment
 
 The web-site is hosted on [Firebase][firebase]. Every single push to
