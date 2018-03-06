@@ -14,10 +14,6 @@ var $ = require("gulp-load-plugins")(),
     variables = { icons: icons, links: config.links, ciEnv: ciEnv },
     variables4Background = { backgroundColor: config.backgroundColor };
 
-gulp.task("pluginDebug", () => {
-  console.log($);
-});
-
 gulp.task("clean", () => {
   return del([ "build/" ]);
 });
