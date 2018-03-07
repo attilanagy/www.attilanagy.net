@@ -58,6 +58,12 @@ gulp.task("cssValidator", () => {
          .pipe($.w3cCss());
 });
 
+gulp.task("sitemap", [ "sass" ], () => {
+  return gulp.src("build/*.html", { read: false })
+         .pipe($.sitemap({ siteUrl: config.siteUrl }))
+         .pipe(gulp.dest("build/"));
+});
+
 gulp.task("acceptanceTest", () => {
   return gulp.src("src/features/*")
          .pipe($.cucumber({
@@ -68,9 +74,9 @@ gulp.task("acceptanceTest", () => {
 
 gulp.task("verify", [ "htmlValidator", "cssValidator" ]);
 
-gulp.task("dist", [ "sass", "favicon" ]);
+gulp.task("dist", [ "sitemap", "favicon" ]);
 
-gulp.task("serve", [ "sass", "favicon" ], () => {
+gulp.task("serve", [ "sitemap", "favicon" ], () => {
   browserSynch.init( { "server": "build/" });
   gulp.watch("src/favicon/favicon.svg", [ "favicon" ])
   gulp.watch("src/sass/*.scss", [ "sass" ]);

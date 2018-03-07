@@ -17,6 +17,7 @@
     "gulp-nunjucks": "^3.1.1",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^3.1.0",
+    "gulp-sitemap": "^5.0.0",
     "gulp-svg2png": "^2.0.2",
     "gulp-to-ico": "^1.0.0",
     "gulp-w3c-css": "^1.0.2",
