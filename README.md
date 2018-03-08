@@ -37,6 +37,10 @@ Generate CSS (and HTML as dependency)
 
 `gulp sass`
 
+Generate Sitemap (and CSS / HTML as depedency)
+
+`gulp sitemap`
+
 Start Development Environment
 
 `gulp serve`
