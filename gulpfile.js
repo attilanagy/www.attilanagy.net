@@ -65,7 +65,7 @@ gulp.task("sitemap", [ "sass" ], () => {
 });
 
 gulp.task("cert", () => {
-  return gulp.src("src/certs/email.pem")
+  return gulp.src("src/certs/attilanagy.pem")
          .pipe(gulp.dest("build/"));
 });
 
