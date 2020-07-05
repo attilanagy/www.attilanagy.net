@@ -14,4 +14,3 @@ Scenario Outline: Path is accessible
   | /favicon.ico |
   | /css/attilanagy.css |
   | /sitemap.xml |
-  | /attilanagy.pem |

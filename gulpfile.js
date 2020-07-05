@@ -64,11 +64,6 @@ gulp.task("sitemap", [ "sass" ], () => {
          .pipe(gulp.dest("build/"));
 });
 
-gulp.task("cert", () => {
-  return gulp.src("src/certs/attilanagy.pem")
-         .pipe(gulp.dest("build/"));
-});
-
 gulp.task("acceptanceTest", () => {
   return gulp.src("src/features/*")
          .pipe($.cucumber({
@@ -79,7 +74,7 @@ gulp.task("acceptanceTest", () => {
 
 gulp.task("verify", [ "htmlValidator", "cssValidator" ]);
 
-gulp.task("dist", [ "sitemap", "favicon", "cert" ]);
+gulp.task("dist", [ "sitemap", "favicon" ]);
 
 gulp.task("serve", [ "sitemap", "favicon" ], () => {
   browserSynch.init( { "server": "build/" });
